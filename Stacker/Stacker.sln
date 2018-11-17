@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stacker", "Stacker\Stacker.csproj", "{ADC84E66-627C-4A91-9F3A-DEFF7DEFB240}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADC84E66-627C-4A91-9F3A-DEFF7DEFB240}.Debug|x86.ActiveCfg = Debug|x86
+		{ADC84E66-627C-4A91-9F3A-DEFF7DEFB240}.Debug|x86.Build.0 = Debug|x86
+		{ADC84E66-627C-4A91-9F3A-DEFF7DEFB240}.Release|x86.ActiveCfg = Release|x86
+		{ADC84E66-627C-4A91-9F3A-DEFF7DEFB240}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CCA711A-AC37-4101-AEDB-8116F033DBAA}
+	EndGlobalSection
+EndGlobal
