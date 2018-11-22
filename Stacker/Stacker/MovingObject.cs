@@ -11,7 +11,7 @@ namespace Stacker
 
     //FixedObject class: position, texture, scale, color, hitbox, Draw()
     //MovingObject : FixedObject + Speed, Update()
-    class MovingObject
+    class MovingObject : FixedObject
     {
         Vector2 Position;
         Color color;
@@ -19,8 +19,7 @@ namespace Stacker
         Vector2 Scale;
         Vector2 Speed;
         int Score;
-        Collider Hitbox
-
+        Collider Hitbox;
 
         public MovingObject(Texture2D image, Vector2 position, Color color, Vector2 speed)
         {

@@ -1,9 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Stacker
 {
+
+    //PascalCase: Class names, Function names, Public variables/properties
+    //camelCase: private variables, local variables
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -16,7 +21,9 @@ namespace Stacker
 
 
 
-        //List<FixedObject>
+        List<FixedObject> fixedObjects;
+
+        
         //Row object
 
         //when spacebar pressed:
@@ -73,7 +80,7 @@ namespace Stacker
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);

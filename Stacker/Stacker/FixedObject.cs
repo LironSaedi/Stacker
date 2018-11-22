@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace Stacker
 {
-
+    //FixedObject class: position, texture, scale, color, hitbox, Draw()
+    //MovingObject : FixedObject + Speed, Update()
     class FixedObject
     {
-        Vector2 position;
-        Texture2D texture;
-        Vector2 scale;
-        Color Tint;
-        Collider Hitbox;
-        SpriteBatch batch;
-
+        //PascalCase these variables
+        public Vector2 Position;
+        public Texture2D Texture;
+        public Vector2 Scale;
+        public Color Tint;
+        public Collider Hitbox;
+        public SpriteBatch Batch;
     }
 }
