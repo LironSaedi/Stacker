@@ -17,7 +17,20 @@ namespace Stacker
         public Texture2D Texture;
         public Vector2 Scale;
         public Color Tint;
-        public Collider Hitbox;
-        public SpriteBatch Batch;
+        public Rectangle Hitbox
+        {
+            get
+            {
+                return new Rectangle(0, 0,0,0);
+            }
+        }
+
+        //constructor
+        
+
+        public void Draw(SpriteBatch batch)
+        {
+            //draw here
+        }
     }
 }
