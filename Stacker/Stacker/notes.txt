@@ -1,6 +1,6 @@
 
 Fixed Object:
-Make a constructor for Fixed Object
+Make a constructor for Fixed Object (DONE)
 finish Hitbox in fixed object
 finish draw function in fixed object
 

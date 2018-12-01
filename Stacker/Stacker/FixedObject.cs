@@ -12,7 +12,7 @@ namespace Stacker
     //MovingObject : FixedObject + Speed, Update()
     class FixedObject
     {
-        //PascalCase these variables
+        // DONE : PascalCase these variables 
         public Vector2 Position;
         public Texture2D Texture;
         public Vector2 Scale;
@@ -21,16 +21,24 @@ namespace Stacker
         {
             get
             {
-                return new Rectangle(0, 0,0,0);
+                //TODO fix this
+                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width * Scale.X,Texture.Height);
             }
         }
 
         //constructor
-        
+        public FixedObject(Vector2 Position, Texture2D Texture, Vector2 Scale, Color Tint)
+        {
+            this.Position = Position;
+            this.Texture = Texture;
+            this.Scale = Scale;
+            this.Tint = Tint;
+        }
 
         public void Draw(SpriteBatch batch)
         {
             //draw here
+            batch.Draw(Texture, Hitbox, Tint);
         }
     }
 }

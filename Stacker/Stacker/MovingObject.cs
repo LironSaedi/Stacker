@@ -16,7 +16,7 @@ namespace Stacker
         Vector2 Speed;
         int Score;
 
-        public MovingObject(Texture2D image, Vector2 position, Color color, Vector2 speed)// : base()
+        public MovingObject(Texture2D image, Vector2 position, Color color, Vector2 speed) : base(position, image, Scale, color)
         {
             this.Speed = speed;
             Score = 0;
