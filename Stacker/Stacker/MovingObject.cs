@@ -16,14 +16,27 @@ namespace Stacker
         Vector2 Speed;
         int Score;
 
-        public MovingObject(Texture2D image, Vector2 position, Color color, Vector2 speed) : base(position, image, Scale, color)
+        public MovingObject(Texture2D image, Vector2 position, Color color, Vector2 speed) : base(position, image, new Vector2(1,1), color)
         {
             this.Speed = speed;
             Score = 0;
         }
 
+            //if right side hits right wall, reverse speed
+        // update
 
-        //update
+        public void Update (int screenWidth)
+        {
+            //move object by speed
+            Position += Speed;
+
+            if(Position >= screenWidth)
+            {
+                Position -= Speed
+            }
+            //if left side hits left wall, reverse speed
+        }
+   
 
     }
 }

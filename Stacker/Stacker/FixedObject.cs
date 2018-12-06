@@ -22,7 +22,7 @@ namespace Stacker
             get
             {
                 //TODO fix this
-                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width * Scale.X,Texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width * Scale.X),(int)(Texture.Height * Scale.Y));
             }
         }
 

@@ -1,14 +1,14 @@
 
 Fixed Object:
 Make a constructor for Fixed Object (DONE)
-finish Hitbox in fixed object
-finish draw function in fixed object
+finish Hitbox in fixed object (DONE)
+finish draw function in fixed object (DONE)
 
 Moving Object:
-complete the constructor for moving object
+complete the constructor for moving object (DONE)
 Then make an update function for Moving Object (move object left and right, bouncing off walls)
 
 Game:
 Create A moving object
 update moving object
-draw moving object
+draw moving objects
