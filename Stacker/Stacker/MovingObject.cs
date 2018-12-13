@@ -25,16 +25,10 @@ namespace Stacker
             //if right side hits right wall, reverse speed
         // update
 
-        public void Update (int screenWidth)
+        public void Update ()
         {
             //move object by speed
             Position += Speed;
-
-            if(Position >= screenWidth)
-            {
-                Position -= Speed
-            }
-            //if left side hits left wall, reverse speed
         }
    
 

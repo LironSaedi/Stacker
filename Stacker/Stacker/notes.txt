@@ -6,7 +6,7 @@ finish draw function in fixed object (DONE)
 
 Moving Object:
 complete the constructor for moving object (DONE)
-Then make an update function for Moving Object (move object left and right, bouncing off walls)
+Then make an update function for Moving Object (move object left and right
 
 Game:
 Create A moving object
