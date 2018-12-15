@@ -15,17 +15,32 @@ namespace Stacker
 
         public Row(Texture2D image, Vector2 position, Color tint, Vector2 speed) // image position color speed
         {
-            //row.Add()
-            //add 3 moving objects
+            row.Add(new MovingObject(image, position, tint, speed));
+            row.Add(new MovingObject(image, position + new Vector2(image.Width, 0), tint, speed));
+            row.Add(new MovingObject(image, position + new Vector2(image.Width * 2, 0), tint, speed));
+            
             //row.Add(new MovingObject())
         }
 
-        //Alex is the best
         public void Update(int screenWidth)
         {
-            //if any of the moving objects hit the left, move all to the right
+
+            for (int i = 0; i < row.Count; i++)
+            {
+                if (row[i].Position.X >= screenWidth)
+                {
+                    for (int j = 0; j < row.Count; j++)
+                    {
+                        row[j].Speed.X = -Math.Abs(row[j].Speed.X);
+                    }
+                    
+                }
+              }  
+                    //if any of the moving objects hit the left, move all to the right
             //vica versa
         }
 
+        //Draw
+        //  loop through row and 
     }
 }
