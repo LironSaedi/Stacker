@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,23 @@ namespace Stacker
     {
 
         List<MovingObject> row = new List<MovingObject>();
+        Texture2D image;
 
         public Row(Texture2D image, Vector2 position, Color tint, Vector2 speed) // image position color speed
         {
+            this.image = image;
             row.Add(new MovingObject(image, position, tint, speed));
             row.Add(new MovingObject(image, position + new Vector2(image.Width, 0), tint, speed));
             row.Add(new MovingObject(image, position + new Vector2(image.Width * 2, 0), tint, speed));
-            
-            //row.Add(new MovingObject())
+        }
+
+        public void MoveUp()
+        {
+            //move all of the row objects up
+            for (int i = 0; i < row.Count; i++)
+            {
+                row[i].Position.Y -= image.Height;
+            }
         }
 
         public void Update(int screenWidth)
@@ -27,20 +37,34 @@ namespace Stacker
 
             for (int i = 0; i < row.Count; i++)
             {
-                if (row[i].Position.X >= screenWidth)
+                row[i].Update();
+            }
+
+            for (int i = 0; i < row.Count; i++)
+            {
+                if (row[i].Position.X + row[i].Texture.Width >= screenWidth || row[i].Position.X <= 0)
                 {
                     for (int j = 0; j < row.Count; j++)
                     {
-                        row[j].Speed.X = -Math.Abs(row[j].Speed.X);
+                        row[j].Speed.X *= -1;
                     }
-                    
+
                 }
-              }  
-                    //if any of the moving objects hit the left, move all to the right
+            }
+
+
+
+            //if any of the moving objects hit the left, move all to the right
             //vica versa
         }
 
-        //Draw
+        public void Draw(SpriteBatch batch)
+        {
+            for (int i = 0; i < row.Count; i++)
+            {
+                row[i].Draw(batch);
+            }
+        }
         //  loop through row and 
     }
 }

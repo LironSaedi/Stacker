@@ -21,16 +21,18 @@ namespace Stacker
 
 
 
-        List<FixedObject> fixedObjects;
+        Row row;
+        Rectangle Screen;
+        KeyboardState ks;
 
-        
+
         //Row object
 
         //when spacebar pressed:
         // 1. calculate which moving blocks to remove from row
         // 2. add fixedobjects to the location of the surviving row blocks
         // 3. move the row up
-        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,8 +60,19 @@ namespace Stacker
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Screen = GraphicsDevice.Viewport.Bounds;
 
+            
             // TODO: use this.Content to load your game content here
+
+            Texture2D image = Content.Load<Texture2D>("stacker cubes");
+
+            //height of the screen - height of the block (image)
+
+            //GraphicsDevice.Viewport.Height
+            //Screen.Width
+
+            row = new Row(image, new Vector2(0,Screen.Height-image.Height), Color.White, new Vector2(3, 0));
         }
 
         /// <summary>
@@ -78,10 +91,23 @@ namespace Stacker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            KeyboardState lastKs = ks;
+            ks = Keyboard.GetState();
+
+            if (ks.IsKeyDown(Keys.Escape))
                 Exit();
-            
-            // TODO: Add your update logic here
+
+
+
+            row.Update(Screen.Width);
+            if(ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
+            {
+                row.MoveUp();
+            } 
+
+           
+
+
 
             base.Update(gameTime);
         }
@@ -93,9 +119,11 @@ namespace Stacker
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
+            row.Draw(spriteBatch);
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

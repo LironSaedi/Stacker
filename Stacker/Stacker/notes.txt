@@ -6,9 +6,13 @@ finish draw function in fixed object (DONE)
 
 Moving Object:
 complete the constructor for moving object (DONE)
-Then make an update function for Moving Object (move object left and right
+
+Row:
+	Update: Bounce whole row off left and right walls (DONE)
+	Draw: draw all moving peices (DONE)
 
 Game:
-Create A moving object
-update moving object
-draw moving objects
+make a row object (DONE)
+update row object (DONE) 
+if the spacebar is pressed, move the row up 
+draw row object (DONE)
