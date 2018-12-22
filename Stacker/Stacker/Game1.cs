@@ -22,6 +22,8 @@ namespace Stacker
 
 
         Row row;
+        List<FixedObject> fixedObjects;
+
         Rectangle Screen;
         KeyboardState ks;
 
@@ -62,7 +64,7 @@ namespace Stacker
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Screen = GraphicsDevice.Viewport.Bounds;
 
-            
+
             // TODO: use this.Content to load your game content here
 
             Texture2D image = Content.Load<Texture2D>("stacker cubes");
@@ -72,7 +74,8 @@ namespace Stacker
             //GraphicsDevice.Viewport.Height
             //Screen.Width
 
-            row = new Row(image, new Vector2(0,Screen.Height-image.Height), Color.White, new Vector2(3, 0));
+            row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(3, 0));
+            fixedObjects = new List<FixedObject>();
         }
 
         /// <summary>
@@ -100,12 +103,17 @@ namespace Stacker
 
 
             row.Update(Screen.Width);
-            if(ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
+            if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
             {
+                //add a fixed object for every moving object in the row
+                for (int i = 0; i < row.RowCount; i++)
+                {
+                    fixedObjects.Add(new FixedObject(row[i].Position, row.Image, row[i].Scale, row[i].Tint));
+                }
                 row.MoveUp();
-            } 
+            }
 
-           
+
 
 
 
@@ -120,6 +128,10 @@ namespace Stacker
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+            for (int i = 0; i < fixedObjects.Count; i++)
+            {
+                fixedObjects[i ].Draw(spriteBatch);
+            }
 
             row.Draw(spriteBatch);
 

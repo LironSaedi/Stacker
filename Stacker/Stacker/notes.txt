@@ -3,16 +3,19 @@ Fixed Object:
 Make a constructor for Fixed Object (DONE)
 finish Hitbox in fixed object (DONE)
 finish draw function in fixed object (DONE)
+hitbox that covers the object
 
 Moving Object:
 complete the constructor for moving object (DONE)
+make a hitbox that is DOUBLE the height (same width) and extends below the drawn image
 
 Row:
-	Update: Bounce whole row off left and right walls (DONE)
-	Draw: draw all moving peices (DONE)
+Update: Bounce whole row off left and right walls (DONE)
+Draw: draw all moving peices (DONE)
 
 Game:
 make a row object (DONE)
 update row object (DONE) 
-if the spacebar is pressed, move the row up 
+if the spacebar is pressed, move the row up (DONE)
+	+add fixed objects where the moving objects were (DONE)
 draw row object (DONE)

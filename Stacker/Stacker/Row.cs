@@ -11,13 +11,31 @@ namespace Stacker
 {
     class Row
     {
+        private List<MovingObject> row;
 
-        List<MovingObject> row = new List<MovingObject>();
-        Texture2D image;
+        public MovingObject this[int index]
+        {
+            get
+            {
+                return row[index];
+            }
+        }
+
+        public int RowCount
+        {
+            get
+            {
+                return row.Count;
+            }
+        }
+        
+        public Texture2D Image;
+
 
         public Row(Texture2D image, Vector2 position, Color tint, Vector2 speed) // image position color speed
         {
-            this.image = image;
+            row = new List<MovingObject>();
+            this.Image = image;
             row.Add(new MovingObject(image, position, tint, speed));
             row.Add(new MovingObject(image, position + new Vector2(image.Width, 0), tint, speed));
             row.Add(new MovingObject(image, position + new Vector2(image.Width * 2, 0), tint, speed));
@@ -28,7 +46,7 @@ namespace Stacker
             //move all of the row objects up
             for (int i = 0; i < row.Count; i++)
             {
-                row[i].Position.Y -= image.Height;
+                row[i].Position.Y -= Image.Height;
             }
         }
 
