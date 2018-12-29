@@ -17,7 +17,7 @@ namespace Stacker
         public Texture2D Texture;
         public Vector2 Scale;
         public Color Tint;
-        public Rectangle Hitbox
+        public virtual Rectangle Hitbox
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Stacker
         public void Draw(SpriteBatch batch)
         {
             //draw here
-            batch.Draw(Texture, Hitbox, Tint);
+            batch.Draw(Texture, Position, Tint);
         }
     }
 }

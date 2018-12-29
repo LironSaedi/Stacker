@@ -104,7 +104,9 @@ namespace Stacker
 
             row.Update(Screen.Width);
             if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
-            {
+            { 
+       
+
                 //add a fixed object for every moving object in the row
                 for (int i = 0; i < row.RowCount; i++)
                 {
@@ -112,7 +114,6 @@ namespace Stacker
                 }
                 row.MoveUp();
             }
-
 
 
 

@@ -13,6 +13,15 @@ namespace Stacker
     //MovingObject : FixedObject + Speed, Update()
     class MovingObject : FixedObject
     {
+
+        public override Rectangle Hitbox
+        {
+            get
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width * Scale.X), (int)(Texture.Height * Scale.Y * 2));
+            }
+        }
+
         public Vector2 Speed;
         public int Score;
 
@@ -31,7 +40,6 @@ namespace Stacker
             Position += Speed;
         }
    
-
     }
 }
 
