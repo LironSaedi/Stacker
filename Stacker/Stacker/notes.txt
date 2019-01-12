@@ -12,6 +12,7 @@ make a hitbox that is DOUBLE the height (same width) and extends below the drawn
 Row:
 Update: Bounce whole row off left and right walls (DONE)
 Draw: draw all moving peices (DONE)
+Hitbox: Get{combine all moving object's hitbox into one big hitbox}
 
 Game:
 make a row object (DONE)        

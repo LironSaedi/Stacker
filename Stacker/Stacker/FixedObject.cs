@@ -22,7 +22,7 @@ namespace Stacker
             get
             {
                 //TODO fix this
-                return new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width * Scale.X),(int)(Texture.Height * Scale.Y));
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width * Scale.X), (int)(Texture.Height * Scale.Y));
             }
         }
 
@@ -38,7 +38,8 @@ namespace Stacker
         public void Draw(SpriteBatch batch)
         {
             //draw here
-            batch.Draw(Texture, Position, Tint);
+            batch.Draw(Texture, Position, null, Tint, 0, Vector2.Zero, Scale, SpriteEffects.None, 0);
+            batch.Draw(Game1.pixel, Hitbox, Color.Blue * 0.40f);
         }
     }
 }

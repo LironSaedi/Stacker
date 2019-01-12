@@ -11,6 +11,7 @@ namespace Stacker
 
     public class Game1 : Game
     {
+        public static Texture2D pixel;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -41,31 +42,18 @@ namespace Stacker
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new Color[] { Color.White });
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Screen = GraphicsDevice.Viewport.Bounds;
-
-
-            // TODO: use this.Content to load your game content here
 
             Texture2D image = Content.Load<Texture2D>("stacker cubes");
 
@@ -74,24 +62,15 @@ namespace Stacker
             //GraphicsDevice.Viewport.Height
             //Screen.Width
 
-            row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(3, 0));
+            row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(3, 0), Vector2.One);
             fixedObjects = new List<FixedObject>();
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             KeyboardState lastKs = ks;
@@ -104,8 +83,22 @@ namespace Stacker
 
             row.Update(Screen.Width);
             if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
-            { 
-       
+            {
+                //remove any moving objects from row that do NOT collide with any fixed objects
+                for (int i = 0; i < row.RowCount; i++)
+                {
+                    for (int a = 0, b = fixedObjects.Count - 1; a < row.RowCount && b >= 0; a++, b--)
+                    {
+
+                        if (!row[i].Hitbox.Intersects(fixedObjects[b].Hitbox))
+                        {
+                            row.movingObjects.RemoveAt(i);
+                            i--;
+                            break;
+                        }
+                    }
+                }
+
 
                 //add a fixed object for every moving object in the row
                 for (int i = 0; i < row.RowCount; i++)
@@ -121,17 +114,13 @@ namespace Stacker
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             for (int i = 0; i < fixedObjects.Count; i++)
             {
-                fixedObjects[i ].Draw(spriteBatch);
+                fixedObjects[i].Draw(spriteBatch);
             }
 
             row.Draw(spriteBatch);
