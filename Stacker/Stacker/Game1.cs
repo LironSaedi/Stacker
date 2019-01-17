@@ -23,7 +23,7 @@ namespace Stacker
 
 
         Row row;
-        List<FixedObject> fixedObjects;
+        List<FixedObject> fixedObjects; // null
 
         Rectangle Screen;
         KeyboardState ks;
@@ -62,8 +62,21 @@ namespace Stacker
             //GraphicsDevice.Viewport.Height
             //Screen.Width
 
+
+
+
             row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(3, 0), Vector2.One);
+
+
             fixedObjects = new List<FixedObject>();
+
+
+            
+            for (int i = 0; i < GraphicsDevice.Viewport.Width / row.Image.Width ; i++)
+            {
+                fixedObjects.Add(new FixedObject(new Vector2(i*row.Image.Width , GraphicsDevice.Viewport.Height), row.Image, row[0].Scale, row[0].Tint));
+            }
+            //fixedObjects.Add(new FixedObject(Position,t))
         }
 
 
@@ -85,17 +98,24 @@ namespace Stacker
             if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
             {
                 //remove any moving objects from row that do NOT collide with any fixed objects
+
+                // Ryan's error
                 for (int i = 0; i < row.RowCount; i++)
                 {
-                    for (int a = 0, b = fixedObjects.Count - 1; a < row.RowCount && b >= 0; a++, b--)
+                    bool intersects = false;
+                    for (int b = fixedObjects.Count - 1; b >= 0; b--)
                     {
-
-                        if (!row[i].Hitbox.Intersects(fixedObjects[b].Hitbox))
+                        if (row[i].Hitbox.Intersects(fixedObjects[b].Hitbox))
                         {
-                            row.movingObjects.RemoveAt(i);
-                            i--;
+                            intersects = true;
                             break;
                         }
+                    }
+
+                    if (!intersects)
+                    {
+                        row.movingObjects.RemoveAt(i);
+                        i--;
                     }
                 }
 
