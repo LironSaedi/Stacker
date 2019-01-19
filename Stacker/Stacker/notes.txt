@@ -20,4 +20,7 @@ update row object (DONE)
 if the spacebar is pressed, move the row up (DONE)
 	+add fixed objects where the moving objects were (DONE)
 draw row object (DONE)                                        
-Check if the moving object hits the fixed object
+Check if the moving object hits the fixed object (DONE)
+Make a win screen
+Make a loose screen
+Make the blocks move speed the size of the blocks
