@@ -28,7 +28,8 @@ namespace Stacker
         Rectangle Screen;
         KeyboardState ks;
 
-
+        bool YouLoose = false;
+        Texture2D youLose;
         //Row object
 
         //when spacebar pressed:
@@ -55,7 +56,8 @@ namespace Stacker
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Screen = GraphicsDevice.Viewport.Bounds;
 
-            Texture2D image = Content.Load<Texture2D>("stacker cubes");
+            Texture2D image = Content.Load<Texture2D>("stacker_cubes");
+             youLose = Content.Load<Texture2D>("Grafitti");
 
             //height of the screen - height of the block (image)
 
@@ -88,18 +90,16 @@ namespace Stacker
         {
             KeyboardState lastKs = ks;
             ks = Keyboard.GetState();
-
+            
             if (ks.IsKeyDown(Keys.Escape))
-                Exit();
-
-
-
+            {
+                
+            }
             row.Update(Screen.Width);
             if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
             {
                 //remove any moving objects from row that do NOT collide with any fixed objects
 
-                // Ryan's error
                 for (int i = 0; i < row.RowCount; i++)
                 {
                     bool intersects = false;
@@ -129,6 +129,13 @@ namespace Stacker
             }
 
 
+            //0 blocks in the row??
+            if(row.RowCount == 0)
+            {
+                YouLoose = true;
+            }
+
+
 
 
             base.Update(gameTime);
@@ -142,11 +149,16 @@ namespace Stacker
             {
                 fixedObjects[i].Draw(spriteBatch);
             }
-
+ 
+            if(YouLoose == true)
+            {
+                spriteBatch.Draw(youLose, new Rectangle(0,0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+            }
             row.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
+            
         }
     }
 }

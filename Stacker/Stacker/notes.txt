@@ -21,6 +21,6 @@ if the spacebar is pressed, move the row up (DONE)
 	+add fixed objects where the moving objects were (DONE)
 draw row object (DONE)                                        
 Check if the moving object hits the fixed object (DONE)
-Make a win screen
-Make a loose screen
+Make a win screen (finish the design)
+Make a loose screen (DONE)
 Make the blocks move speed the size of the blocks
