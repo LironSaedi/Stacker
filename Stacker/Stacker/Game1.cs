@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace Stacker
@@ -30,6 +31,10 @@ namespace Stacker
 
         bool YouLoose = false;
         Texture2D youLose;
+
+        TimeSpan rowTime = TimeSpan.FromMilliseconds(100);
+        TimeSpan elapsedRowTime = TimeSpan.Zero;
+
         //Row object
 
         //when spacebar pressed:
@@ -54,9 +59,18 @@ namespace Stacker
             pixel.SetData(new Color[] { Color.White });
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            Texture2D image = Content.Load<Texture2D>("stacker_cubes");
+            graphics.PreferredBackBufferWidth = image.Width * 10;
+            graphics.PreferredBackBufferHeight = image.Height * 20;
+            graphics.ApplyChanges();
             Screen = GraphicsDevice.Viewport.Bounds;
 
-            Texture2D image = Content.Load<Texture2D>("stacker_cubes");
+           
+
+            
+
+
+            Texture2D youWin = Content.Load<Texture2D>("AlexWinScreen");
              youLose = Content.Load<Texture2D>("Grafitti");
 
             //height of the screen - height of the block (image)
@@ -67,7 +81,7 @@ namespace Stacker
 
 
 
-            row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(3, 0), Vector2.One);
+            row = new Row(image, new Vector2(0, Screen.Height - image.Height), Color.White, new Vector2(image.Width, 0), Vector2.One);
 
 
             fixedObjects = new List<FixedObject>();
@@ -90,12 +104,20 @@ namespace Stacker
         {
             KeyboardState lastKs = ks;
             ks = Keyboard.GetState();
-            
+
+            elapsedRowTime += gameTime.ElapsedGameTime;
+
             if (ks.IsKeyDown(Keys.Escape))
             {
                 
             }
-            row.Update(Screen.Width);
+
+            if (elapsedRowTime >= rowTime)
+            {
+                elapsedRowTime = TimeSpan.Zero;
+                row.Update(Screen.Width);
+            }
+
             if (ks.IsKeyDown(Keys.Space) && lastKs.IsKeyUp(Keys.Space)) // && space was previously released
             {
                 //remove any moving objects from row that do NOT collide with any fixed objects
